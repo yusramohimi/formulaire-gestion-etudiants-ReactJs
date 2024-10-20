@@ -6,20 +6,13 @@ import Detail from "./components/Detail";
 function App() {
   const [stagiaires, setStagiaires] = useState([]);
   const [stagiaireDetail, setStagiaireDetail] = useState(null);
-  const [stagiaireModifie, setStagiaireModifie] = useState(null); 
 
   const ajouterStagiaire = (stagiaire) => {
-    if (stagiaireModifie) {
-     
-      modifierStagiaire(stagiaire);
-    } else {
-      setStagiaires([...stagiaires, stagiaire]);
-    }
-    setStagiaireModifie(null); 
+    setStagiaires([...stagiaires, stagiaire]);
   };
 
   const supprimerStagiaire = (id) => {
-    const resteStagiaires = stagiaires.filter((stagiaire) => stagiaire.id !== id);
+    const resteStagiaires = stagiaires.filter(stagiaire => stagiaire.id !== id);
     setStagiaires(resteStagiaires);
   };
 
@@ -27,12 +20,8 @@ function App() {
     setStagiaireDetail(stagiaire);
   };
 
-  const afficherModification = (stagiaire) => {
-    setStagiaireModifie(stagiaire); 
-  };
-
   const modifierStagiaire = (stagiaireModifie) => {
-    const nouveauxStagiaires = stagiaires.map((stagiaire) =>
+    const nouveauxStagiaires = stagiaires.map(stagiaire => 
       stagiaire.id === stagiaireModifie.id ? stagiaireModifie : stagiaire
     );
     setStagiaires(nouveauxStagiaires);
@@ -40,14 +29,13 @@ function App() {
 
   return (
     <>
-      <Form ajouterStagiaire={ajouterStagiaire} stagiaireModifie={stagiaireModifie} />
-      <Table
-  stagiaires={stagiaires}
-  supprimerStagiaire={supprimerStagiaire}
-  afficherDetail={afficherDetail}
-  modifierStagiaire={modifierStagiaire}
-  afficherModification={afficherModification} // Add this
-/>
+      <Form ajouterStagiaire={ajouterStagiaire} />
+      <Table 
+        stagiaires={stagiaires} 
+        supprimerStagiaire={supprimerStagiaire} 
+        afficherDetail={afficherDetail} 
+        modifierStagiaire={modifierStagiaire}
+      />
       <Detail stagiaire={stagiaireDetail} />
     </>
   );

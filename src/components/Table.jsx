@@ -1,7 +1,7 @@
 
 import React from "react";
 
-function Table({ stagiaires, supprimerStagiaire, afficherDetail,afficherModification }) {
+function Table({ stagiaires, supprimerStagiaire, afficherDetail }) {
   
   const handleDelete = (id) => {
     const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer ce stagiaire ?");
@@ -57,7 +57,7 @@ function Table({ stagiaires, supprimerStagiaire, afficherDetail,afficherModifica
                           </button>
                           <button
                             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                            onClick={() => afficherModification(stagiaire)} 
+                          
                           >
                             Modifier
                           </button>

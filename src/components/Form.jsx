@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function Form({ ajouterStagiaire, stagiaireModifie }) {
+function Form({ ajouterStagiaire }) {
   const [id, setId] = useState("");
   const [nom, setNom] = useState("");
   const [dateNaissance, setDateNaissance] = useState("");
@@ -8,24 +8,6 @@ function Form({ ajouterStagiaire, stagiaireModifie }) {
   const [module, setModule] = useState([]);
   const [filiere, setFiliere] = useState("");
   const [note, setNote] = useState("");
-
-
-  useEffect(() => {
-    if (stagiaireModifie) {
-      setId(stagiaireModifie.id);
-      setNom(stagiaireModifie.nom);
-      setDateNaissance(stagiaireModifie.dateNaissance);
-      setGroupe(stagiaireModifie.groupe);
-      setFiliere(stagiaireModifie.filiere);
-      setNote(stagiaireModifie.note);
-  
-      
-      if (stagiaireModifie.module) {
-        setModule(stagiaireModifie.module); 
-      }
-    }
-  }, [stagiaireModifie]);
-  
 
   function handleModule(e) {
     const value = e.target.value;
@@ -40,18 +22,17 @@ function Form({ ajouterStagiaire, stagiaireModifie }) {
     setFiliere(e.target.value);
   }
 
+
+
+
   function save(e) {
     e.preventDefault();
     ajouterStagiaire({ id, nom, dateNaissance, groupe, module, filiere, note });
+
     
-    setId("");
-    setNom("");
-    setDateNaissance("");
-    setGroupe("");
-    setModule([]);
-    setFiliere("");
-    setNote("");
   }
+
+
 
 
 
@@ -63,7 +44,7 @@ function Form({ ajouterStagiaire, stagiaireModifie }) {
         onSubmit={save}
       >
         <h1 className="block text-gray-700 font-bold mb-2 text-xl text-center">
-        {stagiaireModifie ? "Modifier le stagiaire" : "Ajouter un nouveau stagiaire"}
+          Formulaire d'ajout d'un nouveau stagiaire
         </h1>
         <br />
 
