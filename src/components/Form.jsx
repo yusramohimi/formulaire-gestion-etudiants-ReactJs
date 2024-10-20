@@ -9,18 +9,23 @@ function Form({ ajouterStagiaire, stagiaireModifie }) {
   const [filiere, setFiliere] = useState("");
   const [note, setNote] = useState("");
 
-  // Utilisation d'useEffect pour remplir les champs lors de la modification
+
   useEffect(() => {
     if (stagiaireModifie) {
       setId(stagiaireModifie.id);
       setNom(stagiaireModifie.nom);
       setDateNaissance(stagiaireModifie.dateNaissance);
       setGroupe(stagiaireModifie.groupe);
-      setModule(stagiaireModifie.module);
       setFiliere(stagiaireModifie.filiere);
       setNote(stagiaireModifie.note);
+  
+      
+      if (stagiaireModifie.module) {
+        setModule(stagiaireModifie.module); 
+      }
     }
   }, [stagiaireModifie]);
+  
 
   function handleModule(e) {
     const value = e.target.value;
@@ -38,7 +43,7 @@ function Form({ ajouterStagiaire, stagiaireModifie }) {
   function save(e) {
     e.preventDefault();
     ajouterStagiaire({ id, nom, dateNaissance, groupe, module, filiere, note });
-    // Réinitialiser le formulaire après soumission
+    
     setId("");
     setNom("");
     setDateNaissance("");
